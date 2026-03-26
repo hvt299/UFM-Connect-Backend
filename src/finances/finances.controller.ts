@@ -15,19 +15,16 @@ export class FinancesController {
 
   @Post('transactions')
   createTransaction(@Request() req, @Body() createTransactionDto: CreateTransactionDto) {
-    const userId = req.user.sub || req.user._id || req.user.id;
-    return this.financesService.createTransaction(userId, createTransactionDto);
+    return this.financesService.createTransaction(req.user.userId, createTransactionDto);
   }
 
   @Get('transactions')
   getTransactions(@Request() req) {
-    const userId = req.user.sub || req.user._id || req.user.id;
-    return this.financesService.getTransactionsByUser(userId);
+    return this.financesService.getTransactionsByUser(req.user.userId);
   }
 
   @Get('summary')
   getSummary(@Request() req) {
-    const userId = req.user.sub || req.user._id || req.user.id;
-    return this.financesService.getMonthlySummary(userId);
+    return this.financesService.getMonthlySummary(req.user.userId);
   }
 }
