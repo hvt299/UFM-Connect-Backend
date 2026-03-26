@@ -33,7 +33,7 @@ export class User {
     @Prop({ required: true })
     passwordHash: string;
 
-    @Prop({ enum: AccountStatus, default: AccountStatus.ACTIVE })
+    @Prop({ enum: AccountStatus, default: AccountStatus.INACTIVE })
     status: AccountStatus;
 
     @Prop({ enum: AccountTier, default: AccountTier.BASIC })
@@ -41,6 +41,12 @@ export class User {
 
     @Prop({ enum: UserRole, default: UserRole.STUDENT })
     role: UserRole;
+
+    @Prop({ required: false })
+    resetPasswordToken?: string;
+
+    @Prop({ required: false })
+    resetPasswordExpires?: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
