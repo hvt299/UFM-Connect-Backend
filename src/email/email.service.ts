@@ -70,7 +70,7 @@ export class EmailService {
     async sendResetPasswordEmail(to: string, name: string, token: string) {
         const frontendUrl = this.configService.get<string>('FRONTEND_URL') || 'http://localhost:3000';
         const senderEmail = this.configService.get<string>('SENDER_EMAIL')!;
-        const resetLink = `${frontendUrl}/reset-password?token=${token}`;
+        const resetLink = `${frontendUrl}/auth/reset-password?token=${token}`;
 
         const htmlContent = `
       <div style="background-color: #f4f7f6; padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
